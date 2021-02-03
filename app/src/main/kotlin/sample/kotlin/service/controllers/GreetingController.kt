@@ -14,4 +14,8 @@ class GreetingController {
   @GetMapping("/greeting")
   fun greeting(@RequestParam(value = "name", defaultValue = "World") name: String) =
     Greeting(counter.incrementAndGet(), "Hello, $name")
+
+  @GetMapping("/sayCiao")
+  fun sayCiao(@RequestParam(value = "name", defaultValue = "World") name: String) =
+    Greeting(counter.incrementAndGet(), "Ciao, $name!")
 }

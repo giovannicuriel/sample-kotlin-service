@@ -14,4 +14,9 @@ class GreetingControllerTest {
       val classUnderTest = GreetingController()
       assertEquals("Hello, user", classUnderTest.greeting("user").content)
     }
+    @Test
+    fun testAppHasACiaoMessage() {
+      val classUnderTest = GreetingController()
+      assertEquals("Ciao, user!", classUnderTest.sayCiao("user").content)
+    }
 }
