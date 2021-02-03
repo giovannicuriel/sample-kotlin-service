@@ -6,17 +6,24 @@
  * User Manual available at https://docs.gradle.org/6.8.1/userguide/building_java_projects.html
  */
 
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id 'org.jetbrains.kotlin.jvm' version '1.4.20'
-
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+
+    // Spring stuff - from initializr
+    id 'org.springframework.boot' version "2.4.2"
+    id 'io.spring.dependency-management' version "1.0.11.RELEASE"
+
 }
 
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -34,9 +41,23 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+
+    // Spring boot stuff
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'sample.kotlin.service.AppKt'
+    mainClass = 'br.giovanni.kotlin.sampleservice.AppKt'
+}
+
+tasks.withType(KotlinCompile).all {
+  kotlinOptions {
+    jvmTarget = "15"
+  }
+}
+tasks.withType(Test).all {
+  useJUnitPlatform()
 }
