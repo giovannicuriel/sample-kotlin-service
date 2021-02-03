@@ -53,11 +53,8 @@ application {
     mainClass = 'br.giovanni.kotlin.sampleservice.AppKt'
 }
 
-tasks.withType(KotlinCompile).all {
+compileKotlin  {
   kotlinOptions {
     jvmTarget = "15"
   }
-}
-tasks.withType(Test).all {
-  useJUnitPlatform()
 }
