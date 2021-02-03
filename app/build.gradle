@@ -58,3 +58,18 @@ compileKotlin  {
     jvmTarget = "15"
   }
 }
+
+// Heroku configs
+task stage {
+  dependsOn build, clean
+}
+build.mustRunAfter clean
+
+// Avoid run tests on Heroku
+gradle.taskGraph.whenReady {
+  taskGraph ->
+    if (taskGraph.hasTask(stage)) {
+      test.enabled = false
+    }
+}
+
