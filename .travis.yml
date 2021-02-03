@@ -1,0 +1,11 @@
+language: java
+jdk:
+  - openjdk15
+
+script:
+  - ./gradlew clean build test
+
+deploy:
+  provider: heroku
+  api_key: ${HEROKU_APIKEY}
+  app: giovanni-sample-kotlin-service
