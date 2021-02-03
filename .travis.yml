@@ -7,5 +7,7 @@ script:
 
 deploy:
   provider: heroku
-  api_key: ${HEROKU_APIKEY}
-  app: giovanni-sample-kotlin-service
+  api_key:
+    main: ${HEROKU_APIKEY}
+  app:
+    main: giovanni-sample-kotlin-service
